@@ -1,25 +1,28 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import EventList from '@/views/EventList.vue'
-import About from '@/views/About.vue'
-import EventDetails from '@/views/EventDetails.vue'
+import { createRouter, createWebHistory } from "vue-router";
+import EventList from "@/views/EventList.vue";
+import About from "@/views/About.vue";
+import EventDetails from "@/views/EventDetails.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
-      name: 'event-list',
+      path: "/",
+      name: "event-list",
       component: EventList,
+      props: (route) => ({
+        page: parseInt(route.query.page) || 1,
+      }),
     },
     {
-      path: '/event/:id',
-      name: 'event-details',
+      path: "/event/:id",
+      name: "event-details",
       props: true,
       component: EventDetails,
     },
     {
-      path: '/about',
-      name: 'about',
+      path: "/about",
+      name: "about",
       component: About,
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
@@ -27,6 +30,6 @@ const router = createRouter({
       // component: () => import('../views/About.vue'),
     },
   ],
-})
+});
 
-export default router
+export default router;
